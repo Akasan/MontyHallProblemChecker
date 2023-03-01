@@ -44,7 +44,7 @@ class MontyHallProblem:
 
 problem = MontyHallProblem()
 result = {"changed": [], "not_changed": []}
-iterations = [10**i for i in range(1, 8)]
+iterations = [10**i for i in range(1, 6)]
 
 for iteration in tqdm(iterations):
     result["changed"].append(0)
@@ -65,6 +65,11 @@ for iteration in tqdm(iterations):
         result["changed"][-1] += int(problem.is_correct()) / iteration
     
 
-plt.plot(result["changed"], color="b", label="changed")
-plt.plot(result["not_changed"], color="r", label="not_changed")
-plt.show()
+plt.plot(iterations, result["changed"], color="b", label="changed")
+plt.plot(iterations, result["not_changed"], color="r", label="not_changed")
+plt.legend()
+plt.grid()
+plt.xlabel("iterations")
+plt.ylabel("accuracy")
+plt.xscale("log")
+plt.savefig("result.png")
